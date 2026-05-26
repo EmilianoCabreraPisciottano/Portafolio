@@ -18,9 +18,79 @@ const contentTypes = {
   '.webp': 'image/webp'
 };
 
+const nodemailer = require('nodemailer');
+
+async function handleContact(req, res) {
+  try {
+    const chunks = [];
+    for await (const chunk of req) chunks.push(chunk);
+    const raw = Buffer.concat(chunks).toString();
+    let data = {};
+    try {
+      data = JSON.parse(raw);
+    } catch (e) {
+      // try urlencoded
+      data = Object.fromEntries(new URLSearchParams(raw));
+    }
+
+    const name = (data.name || '').trim();
+    const email = (data.email || '').trim();
+    const message = (data.message || '').trim();
+
+    if (!name || !email || !message) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: 'Missing fields' }));
+      return;
+    }
+
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
+    const smtpPort = Number(process.env.SMTP_PORT) || 465;
+    const smtpSecure = (process.env.SMTP_SECURE || 'true') === 'true';
+    const fromEmail = process.env.FROM_EMAIL || smtpUser;
+    const toEmail = process.env.TO_EMAIL || 'emilianocabrerapisciottano@gmail.com';
+
+    if (!smtpUser || !smtpPass) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: 'Email not configured on server' }));
+      return;
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
+      auth: { user: smtpUser, pass: smtpPass }
+    });
+
+    const mail = {
+      from: `${name} <${fromEmail}>`,
+      to: toEmail,
+      subject: `Nuevo mensaje desde portafolio: ${name}`,
+      text: `Nombre: ${name}\nEmail: ${email}\n\n${message}`,
+      html: `<p><strong>Nombre:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p>${message.replace(/\n/g, '<br>')}</p>`
+    };
+
+    await transporter.sendMail(mail);
+
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ ok: true }));
+  } catch (err) {
+    console.error('Contact send error', err);
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ ok: false, error: 'Send failed' }));
+  }
+}
+
 const server = http.createServer((req, res) => {
   const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   let requestPath = decodeURIComponent(requestUrl.pathname);
+
+  if (req.method === 'POST' && requestPath === '/contact') {
+    handleContact(req, res);
+    return;
+  }
 
   if (requestPath === '/') {
     requestPath = '/index.html';

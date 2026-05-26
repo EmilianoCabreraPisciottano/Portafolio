@@ -347,11 +347,25 @@ if (contactForm) {
     feedback.textContent = 'Enviando...';
     feedback.className = 'contact-feedback';
 
-    // Simulate network send
-    setTimeout(() => {
-      feedback.textContent = 'Mensaje enviado. Gracias — te respondo pronto.';
-      feedback.className = 'contact-feedback success';
-      contactForm.reset();
-    }, 900);
+    // Send to server
+    fetch('/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, message })
+    }).then(async res => {
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        feedback.textContent = 'Mensaje enviado. Gracias — te respondo pronto.';
+        feedback.className = 'contact-feedback success';
+        contactForm.reset();
+      } else {
+        feedback.textContent = data.error || 'Error al enviar el mensaje.';
+        feedback.className = 'contact-feedback error';
+      }
+    }).catch(err => {
+      console.error('Send error', err);
+      feedback.textContent = 'Error de red al enviar.';
+      feedback.className = 'contact-feedback error';
+    });
   });
 }
