@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: portafolio
+    runtime: static
+    buildCommand: echo "Deploying static portfolio"
+    staticPublishPath: .
