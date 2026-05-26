@@ -74,8 +74,7 @@ function applyTechInitials() {
           el.classList.add('has-icon');
           // prefer external sprite for reuse; fallback to internal symbol if needed
           const spriteHref = `icons.svg#${iconId}`;
-          // make the icon accessible: provide role and aria-label, and make it focusable for keyboard users
-          el.innerHTML = `<span class="tech-icon" role="img" aria-label="${original}" tabindex="0" title="${original}"><svg aria-hidden="true" focusable="false"><use href="${spriteHref}" xlink:href="${spriteHref}"></use></svg></span><span class="tech-text">${original}</span>`;
+          el.innerHTML = `<span class="tech-icon" aria-hidden="true"><svg aria-hidden="true" focusable="false"><use href="${spriteHref}" xlink:href="${spriteHref}"></use></svg></span><span class="tech-text">${original}</span>`;
         }
         found = true;
         break;
@@ -90,70 +89,6 @@ function applyTechInitials() {
 }
 
 applyTechInitials();
-
-// Setup interactions for icons: toggle visible text on click/tap and keyboard
-function setupIconInteractions() {
-  const parents = document.querySelectorAll('.project-tags span.has-icon, .skills-pills span.has-icon, .tech-list li.has-icon, .profile-tags span.has-icon');
-  // store active timers per element so they can be cleared if user re-toggles
-  const timers = new WeakMap();
-  const AUTO_CLOSE_MS = 3000;
-
-  function clearTimerFor(el) {
-    const t = timers.get(el);
-    if (t) {
-      clearTimeout(t);
-      timers.delete(el);
-    }
-  }
-
-  parents.forEach(el => {
-    const icon = el.querySelector('.tech-icon');
-    if (!icon) return;
-
-    const openLabel = () => {
-      el.classList.add('show-text');
-      clearTimerFor(el);
-      const id = setTimeout(() => el.classList.remove('show-text'), AUTO_CLOSE_MS);
-      timers.set(el, id);
-    };
-
-    const closeLabel = () => {
-      el.classList.remove('show-text');
-      clearTimerFor(el);
-    };
-
-    // Click / touch toggles the label for small screens
-    icon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (el.classList.contains('show-text')) closeLabel();
-      else openLabel();
-    });
-
-    // Keyboard activation (Enter / Space)
-    icon.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        if (el.classList.contains('show-text')) closeLabel();
-        else openLabel();
-      }
-    });
-
-    // If user manually removes via other interactions, ensure timer is cleared
-    el.addEventListener('remove-show-text', () => clearTimerFor(el));
-  });
-
-  // Close any open labels when clicking outside; also clear timers
-  document.addEventListener('click', (ev) => {
-    parents.forEach(p => {
-      if (!p.contains(ev.target)) {
-        p.classList.remove('show-text');
-        clearTimerFor(p);
-      }
-    });
-  });
-}
-
-setupIconInteractions();
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

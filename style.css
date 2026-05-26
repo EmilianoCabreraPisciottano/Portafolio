@@ -975,6 +975,24 @@ section {
 
 .tech-icon svg { width: 18px; height: 18px; display: block; }
 
+@media (hover: none), (pointer: coarse) {
+  .project-tags span.has-icon .tech-text,
+  .skills-pills span.has-icon .tech-text,
+  .tech-list li.has-icon .tech-text,
+  .profile-tags span.has-icon .tech-text {
+    max-width: 220px;
+    opacity: 1;
+    margin-left: 6px;
+  }
+
+  .project-tags span.has-icon,
+  .skills-pills span.has-icon,
+  .tech-list li.has-icon,
+  .profile-tags span.has-icon {
+    cursor: default;
+  }
+}
+
 .project-actions {
   margin-top: 18px;
   display: flex;
