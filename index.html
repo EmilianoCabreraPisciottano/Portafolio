@@ -3,29 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio de Emiliano Cabrera — Desarrollador Full Stack. Proyectos en Java, Spring Boot, Node.js, React y más.">
+  <meta name="theme-color" content="#08111d">
+  <meta property="og:title" content="Portafolio Emiliano Cabrera">
+  <meta property="og:description" content="Portafolio de Emiliano Cabrera — Desarrollador Full Stack con proyectos en Java, Spring Boot, Node.js y React.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Portafolio Emiliano Cabrera</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Preload Google Fonts stylesheet to speed up first render; fallback via noscript -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;700&display=swap" onload="this.rel='stylesheet'">
+  <link rel="preload" href="img/Retrato.png" as="image">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  </noscript>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="bg-shape shape-1" aria-hidden="true"></div>
   <div class="bg-shape shape-2" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <nav class="navbar">
-    <a href="#top" class="brand">EC</a>
-    <ul class="nav-links">
-      <li><a href="#about">Sobre mí</a></li>
-      <li><a href="#projects">Proyectos</a></li>
-      <li><a href="#contact">Contacto</a></li>
-    </ul>
+    <a href="#top" class="brand" aria-label="Ir al inicio">
+      <img src="img/LogoPortafolio.png" alt="Logo de Emiliano Cabrera">
+    </a>
+    <div class="nav-shell">
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Abrir menú" aria-controls="nav-links">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+      <a class="nav-cta" href="#contact">Disponible para colaborar</a>
+    </div>
   </nav>
+
+  <main id="main-content">
 
   <header id="top" class="hero container">
     <div class="hero-copy reveal-on-scroll">
       <p class="eyebrow">Desarrollador Full Stack</p>
+      <div class="status-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        Abierto a oportunidades freelance y junior
+      </div>
       <h1>Emiliano Cabrera</h1>
       <p class="hero-description">Soy estudiante de Analista Programador en la Universidad ORT con experiencia en proyectos de desarrollo de software. Me especializo en crear soluciones eficientes y funcionales, combinando lógica de programación con buenas prácticas de desarrollo. Busco oportunidades para crecer profesionalmente y aportar valor a equipos de tecnología.</p>
       <div class="hero-actions">
@@ -39,18 +64,37 @@
         <span>Spring Boot</span>
         <span>Node.js</span>
       </div>
+      <div class="hero-highlights">
+        <article>
+          <strong>Frontend sólido</strong>
+          <p>Interfaces limpias, responsive y enfocadas en usabilidad.</p>
+        </article>
+        <article>
+          <strong>Backend confiable</strong>
+          <p>APIs, bases de datos y arquitectura pensada para escalar.</p>
+        </article>
+      </div>
     </div>
-    <div class="hero-panel reveal-on-scroll">
-      <img src="img/Retrato.png" alt="Foto de Emiliano Cabrera" class="profile-photo">
+      <div class="hero-panel reveal-on-scroll">
+      <div class="profile-meta">
+        <p class="profile-role">Analista Programador</p>
+        <h2>Construyo productos digitales con foco en claridad y rendimiento.</h2>
+      </div>
+      <img src="img/Retrato.png" alt="Foto de Emiliano Cabrera" class="profile-photo" loading="eager" fetchpriority="high" decoding="async" width="290" height="290">
       <div class="hero-stats">
         <div>
-          <p class="stat-number" data-target="3">0</p>
-          <p>Proyectos destacados</p>
+          <p class="stat-number" data-target="3">2</p>
+          <p>Proyectos</p>
         </div>
         <div>
-          <p class="stat-number" data-target="10">0</p>
+          <p class="stat-number" data-target="10">10</p>
           <p>Tecnologías usadas</p>
         </div>
+      </div>
+      <div class="profile-tags" aria-label="Áreas de trabajo">
+        <span>UI moderna</span>
+        <span>APIs</span>
+        <span>Arquitectura</span>
       </div>
     </div>
   </header>
@@ -59,23 +103,171 @@
     <div class="section-title-wrap">
       <p class="eyebrow">Perfil</p>
       <h2>Sobre mí</h2>
+      <p class="section-lead">Me enfoco en traducir ideas técnicas en productos claros, mantenibles y con una base preparada para crecer.</p>
     </div>
     <div class="about-grid">
       <article class="glass-card">
         <h3>Enfoque</h3>
-        <p>Tengo experiencia trabajando tanto en frontend como en backend, usando herramientas modernas para construir aplicaciones completas, escalables y con buen rendimiento.</p>
+        <p>Trabajo desde la interfaz hasta la lógica del servidor, cuidando estructura, legibilidad y experiencia de usuario. Me interesa construir soluciones que no solo funcionen, sino que también sean fáciles de entender, ampliar y mantener.</p>
       </article>
       <article class="glass-card">
         <h3>Frontend</h3>
-        <p>JavaScript, TypeScript, React, CSS y Bootstrap, aplicando principios de diseño limpio, accesible y responsive.</p>
+        <p>JavaScript, TypeScript, React, CSS y Bootstrap. Aplico responsive design, accesibilidad básica, jerarquía visual y componentes reutilizables para lograr interfaces rápidas y consistentes.</p>
       </article>
       <article class="glass-card">
         <h3>Backend</h3>
-        <p>Java, Spring Boot, C#, Node.js y SQL Server, con foco en arquitectura, rendimiento y buenas prácticas.</p>
+        <p>Java, Spring Boot, Node.js, C# y SQL Server. Me apoyo en capas de servicio, validaciones de negocio, persistencia y estructuras simples pero sólidas para separar responsabilidades.</p>
       </article>
       <article class="glass-card">
         <h3>Cloud & Herramientas</h3>
-        <p>AWS, Azure, Postman, Somee y ASP.NET para desenvolverse con soltura en entornos cloud e integración.</p>
+        <p>AWS, Azure, Postman, Somee y ASP.NET para integrar, probar y desplegar aplicaciones con mayor soltura en entornos reales.</p>
+      </article>
+    </div>
+    <div class="workflow-strip">
+      <article>
+        <span>01</span>
+        <p>Entiendo el problema y defino el alcance.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <p>Diseño una interfaz clara y una base técnica sólida.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <p>Itero con feedback hasta llegar a una solución estable.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack" class="section container reveal-on-scroll">
+    <div class="section-title-wrap">
+      <p class="eyebrow">Tecnologías</p>
+      <h2>Stack y capacidades</h2>
+      <p class="section-lead">Una vista rápida de las tecnologías con las que trabajo y del tipo de soluciones donde las aplico.</p>
+    </div>
+    <div class="tech-grid">
+      <article class="tech-card">
+        <p class="tech-label">Frontend</p>
+        <h3>Interfaces claras y responsivas</h3>
+        <p>HTML, CSS, Bootstrap, JavaScript, TypeScript y React para construir pantallas ordenadas, adaptables y fáciles de usar.</p>
+        <ul class="tech-list">
+          <li>Diseño responsive</li>
+          <li>Accesibilidad básica</li>
+          <li>Componentes reutilizables</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <p class="tech-label">Backend</p>
+        <h3>Reglas de negocio y APIs</h3>
+        <p>Java, Spring Boot, Node.js, C# y SQL Server para crear lógica de negocio, validaciones, persistencia y endpoints estables.</p>
+        <ul class="tech-list">
+          <li>Capas de servicio</li>
+          <li>Validación de datos</li>
+          <li>Persistencia estructurada</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <p class="tech-label">Arquitectura</p>
+        <h3>Soluciones mantenibles</h3>
+        <p>Aplico separación de responsabilidades, fachadas, modelos de dominio y flujos simples para facilitar el crecimiento del sistema.</p>
+        <ul class="tech-list">
+          <li>Fachadas de servicio</li>
+          <li>Modelos de dominio</li>
+          <li>Patrones simples y claros</li>
+        </ul>
+      </article>
+      <article class="tech-card">
+        <p class="tech-label">Herramientas</p>
+        <h3>Desarrollo, prueba y despliegue</h3>
+        <p>Postman, GitHub, AWS, Azure, Somee, Nodemailer y entornos de despliegue para probar, integrar y publicar aplicaciones.</p>
+        <ul class="tech-list">
+          <li>APIs y pruebas</li>
+          <li>Deploys simples</li>
+          <li>Integración de formularios</li>
+        </ul>
+      </article>
+    </div>
+    <div class="tech-banner">
+      <strong>Modo de trabajo</strong>
+      <p>Priorizo claridad técnica, interfaz limpia y lógica bien separada. Cuando el proyecto lo requiere, agrego validación, persistencia, trazabilidad y pequeñas mejoras de experiencia que lo hacen más usable.</p>
+    </div>
+  </section>
+
+  <section id="journey" class="section container reveal-on-scroll">
+    <div class="section-title-wrap">
+      <p class="eyebrow">Trayectoria</p>
+      <h2>Recorrido y enfoque profesional</h2>
+      <p class="section-lead">Una síntesis de cómo fui construyendo experiencia y qué tipo de problemas me interesa resolver hoy.</p>
+    </div>
+    <div class="journey-grid">
+      <article class="journey-card">
+        <p class="journey-date">Formación actual</p>
+        <h3>Analista Programador en Universidad ORT</h3>
+        <p>Aprendiendo a diseñar soluciones con criterio técnico, buenas prácticas y una base sólida en desarrollo de software.</p>
+      </article>
+      <article class="journey-card">
+        <p class="journey-date">Proyectos aplicados</p>
+        <h3>Webs y sistemas con lógica real</h3>
+        <p>Desarrollo aplicaciones que combinan frontend, backend, persistencia, validaciones y despliegue para cubrir necesidades concretas.</p>
+      </article>
+      <article class="journey-card">
+        <p class="journey-date">Foco actual</p>
+        <h3>Calidad, claridad y crecimiento</h3>
+        <p>Me interesa seguir mejorando en arquitectura, experiencia de usuario y construcción de productos mantenibles que escalen sin complejidad innecesaria.</p>
+      </article>
+    </div>
+    <div class="impact-strip">
+      <article>
+        <strong>Interfaz</strong>
+        <p>Diseño limpio y responsive con foco en legibilidad.</p>
+      </article>
+      <article>
+        <strong>Lógica</strong>
+        <p>Reglas de negocio claras y validaciones consistentes.</p>
+      </article>
+      <article>
+        <strong>Entrega</strong>
+        <p>Soluciones listas para usar, probar y desplegar.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="specialties" class="section container reveal-on-scroll">
+    <div class="section-title-wrap">
+      <p class="eyebrow">Especialidades</p>
+      <h2>Qué puedo construir</h2>
+      <p class="section-lead">Un resumen directo de lo que puedo aportar en un proyecto real, desde la interfaz hasta la lógica de negocio.</p>
+    </div>
+    <div class="specialties-grid">
+      <article class="specialty-card">
+        <p class="specialty-tag">Frontend</p>
+        <h3>Interfaces que se entienden rápido</h3>
+        <p>Landing pages, portafolios, dashboards y páginas de servicio con buena jerarquía visual, responsive design y componentes reutilizables.</p>
+        <ul>
+          <li>Maquetación limpia</li>
+          <li>UX básica y accesibilidad</li>
+          <li>Animaciones suaves y útiles</li>
+        </ul>
+      </article>
+      <article class="specialty-card">
+        <p class="specialty-tag">Backend</p>
+        <h3>APIs y lógica de negocio</h3>
+        <p>Servicios, validaciones, persistencia y endpoints para sistemas que necesitan capturar datos, procesarlos y exponer información de forma segura.</p>
+        <ul>
+          <li>Capas y separación de responsabilidades</li>
+          <li>Validaciones y reglas de negocio</li>
+          <li>Persistencia en archivo o base de datos</li>
+        </ul>
+      </article>
+      <article class="specialty-card">
+        <p class="specialty-tag">Integración</p>
+        <h3>Soluciones conectadas de punta a punta</h3>
+        <p>Formularios con envío real, consumo de APIs, despliegue, integración con servicios externos y apoyo en herramientas de prueba.</p>
+        <ul>
+          <li>Fetch, FormData y formularios</li>
+          <li>Postman y flujos de prueba</li>
+          <li>Deploy y monitoreo básico</li>
+        </ul>
       </article>
     </div>
   </section>
@@ -84,15 +276,27 @@
     <div class="section-title-wrap">
       <p class="eyebrow">Portafolio</p>
       <h2>Proyectos</h2>
+      <p class="section-lead">Una selección con foco en producto, experiencia y ejecución técnica. Cada proyecto resume el stack, la arquitectura y el tipo de problemas que resolviste.</p>
+      <div class="project-filters" role="tablist" aria-label="Filtrar proyectos">
+        <button class="filter-btn active" type="button" data-filter="all" role="tab" aria-pressed="true">Todos</button>
+        <button class="filter-btn" type="button" data-filter="fullstack" role="tab" aria-pressed="false">Full Stack</button>
+        <button class="filter-btn" type="button" data-filter="product" role="tab" aria-pressed="false">Producto</button>
+      </div>
     </div>
     <div class="projects-grid">
-      <div class="project-card">
+      <div class="project-card" data-category="fullstack">
+        <p class="project-kicker">Sitio + backend</p>
         <h3>Clínica Colibri</h3>
-        <p>Sistema de gestión integral para clínica veterinaria. Desarrollado con tecnologías modernas para manejar citas, historiales médicos, facturas y gestión de pacientes.</p>
+        <p>Sitio institucional y sistema de contacto para una clínica interdisciplinaria, construido con HTML, Bootstrap, CSS y JavaScript en el frontend, más un backend Node/Express para recibir formularios, guardar envíos y notificar por email.</p>
+        <p class="project-detail">Implementa validación de formulario en cliente y servidor, acordeones accesibles, modales por servicio, galería responsive, mapa embebido, persistencia en JSON, envío con Nodemailer y rate limiting básico en el endpoint de contacto.</p>
+        <div class="project-meta">
+          <strong>Qué resuelve</strong>
+          <p>Presentación profesional de servicios, captación de consultas y almacenamiento simple de leads sin depender de una base externa.</p>
+        </div>
         <div class="project-tags">
-          <span>Full Stack</span>
-          <span>Gestión</span>
-          <span>Productivo</span>
+          <span>HTML + Bootstrap</span>
+          <span>Node/Express</span>
+          <span>Nodemailer</span>
         </div>
         <div class="project-actions">
           <a href="https://github.com/EmilianoCabreraPisciottano/Clinica-Colibri" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
@@ -100,13 +304,19 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="product">
+        <p class="project-kicker">App de negocio</p>
         <h3>MoveMood</h3>
-        <p>Aplicación de seguimiento de fitness y bienestar. Desarrollada para monitorear rutinas de ejercicio y estado de ánimo, integrando datos personalizados y estadísticas.</p>
+        <p>Aplicación de entrenamiento y seguimiento desarrollada con Java 21 y Spring Boot, estructurada con capas de servicio, fachada, repositorios JPA y entidades de dominio para rutinas, usuarios, mesociclos y registros.</p>
+        <p class="project-detail">Incluye cálculo automático de pagos, asignación y edición de rutinas por día, historial de progreso, validaciones de negocio, endpoints protegidos y una interfaz web separada para cliente y entrenador con lógica JavaScript dedicada.</p>
+        <div class="project-meta">
+          <strong>Qué resuelve</strong>
+          <p>Gestión centralizada de entrenamientos, clientes, pagos y seguimiento de progreso con reglas de negocio claras.</p>
+        </div>
         <div class="project-tags">
-          <span>Fitness</span>
-          <span>Datos</span>
-          <span>UX</span>
+          <span>Java 21</span>
+          <span>Spring Boot</span>
+          <span>JPA</span>
         </div>
         <div class="project-actions">
           <a href="https://github.com/EmilianoCabreraPisciottano/movemood-master" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
@@ -114,16 +324,22 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-category="fullstack">
+        <p class="project-kicker">Reserva</p>
         <h3>Proyecto 3</h3>
-        <p>Descripción breve de tu proyecto 3. Puedes actualizarlo conforme avances en tus trabajos universitarios.</p>
+        <p>Espacio reservado para tu próximo trabajo. Podés usarlo para mostrar una app con arquitectura distinta, una API propia o una solución académica con mayor profundidad técnica.</p>
+        <p class="project-detail">Ideal para documentar stack, decisiones de diseño, patrones utilizados, complejidad resuelta y resultados medibles del proyecto.</p>
+        <div class="project-meta">
+          <strong>Sugerencia</strong>
+          <p>Si querés, este espacio puede contar un proyecto con autenticación, base de datos y despliegue, para mostrar un salto de madurez técnica.</p>
+        </div>
         <div class="project-tags">
           <span>En desarrollo</span>
-          <span>Roadmap</span>
-          <span>Próximo lanzamiento</span>
+          <span>Documentación</span>
+          <span>Arquitectura</span>
         </div>
         <div class="project-actions">
-          <a href="#">Ver en GitHub</a>
+          <a href="#contact">Pedir información</a>
         </div>
       </div>
     </div>
@@ -133,10 +349,31 @@
     <div class="contact-card">
       <p class="eyebrow">Conectemos</p>
       <h2>Contacto</h2>
-      <p>Si querés conversar sobre oportunidades, proyectos o colaboración técnica, estoy disponible para conectar.</p>
+      <p>Si querés conversar sobre oportunidades, proyectos o colaboración técnica, completá el formulario y te respondo.</p>
+
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="form-row">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text" required placeholder="Tu nombre">
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="tu@ejemplo.com">
+        </div>
+        <div class="form-row">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Contame brevemente sobre el proyecto..."></textarea>
+        </div>
+        <div class="form-row actions">
+          <button type="submit" class="btn primary">Enviar mensaje</button>
+          <span id="contact-feedback" role="status" aria-live="polite" class="contact-feedback"></span>
+        </div>
+      </form>
+
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/emiliano-cabrera-pisciottano-68a483244" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://github.com/EmilianoCabreraPisciottano" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="mailto:emilianocabrerapisciottano@gmail.com">Email</a>
       </div>
     </div>
   </section>
@@ -145,7 +382,34 @@
     &copy; 2026 Emiliano Cabrera
   </footer>
 
+  </main>
+
   <button id="back-to-top" aria-label="Volver arriba">&#8679;</button>
+
+  <!-- Captura errores de Live Server (no rompen la página) -->
+  <script>
+    window.addEventListener('unhandledrejection', function (event) {
+      try {
+        const reason = event.reason;
+        const msg = reason && (reason.message || (typeof reason === 'string' ? reason : reason && reason.toString && reason.toString()));
+        if (typeof msg === 'string' && msg.includes('No Listener: tabs:outgoing.message.ready')) {
+          event.preventDefault();
+        }
+      } catch (e) {
+        // no-op
+      }
+    });
+
+    window.addEventListener('error', function (e) {
+      try {
+        if (e && e.filename && e.filename.indexOf('vendor.js') !== -1) {
+          e.preventDefault();
+        }
+      } catch (err) {
+        // no-op
+      }
+    });
+  </script>
 
   <script src="script.js" defer></script>
 
